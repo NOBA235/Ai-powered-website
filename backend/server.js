@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173"],//This is the url of the frontend and cors here is allowing to talk to my frontend
+  origin: ['https://ai-powered-website.vercel.app'],//This is the url of the frontend and cors here is allowing to talk to my frontend
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
