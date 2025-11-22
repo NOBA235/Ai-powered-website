@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --color-cyber-blue: #00f0ff;
+  --color-cyber-purple: #7b61ff;
+  --color-cyber-pink: #ff2d75;
+  --color-cyber-dark: #0a0a0f;
+  --color-cyber-gray: #1a1a2e;
+  
+  --font-tech: 'Orbitron', monospace;
+  --font-main: 'Inter', sans-serif;
+  
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-text-shimmer: text-shimmer 2.5s ease-in-out infinite alternate;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-main);
+    background-color: var(--color-cyber-dark);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cyber-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-cyber-blue), var(--color-cyber-purple));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--color-cyber-purple), var(--color-cyber-blue));
+}
+
+/* Animations */
+@keyframes glow {
+  0% { 
+    box-shadow: 
+      0 0 5px var(--color-cyber-blue),
+      0 0 10px var(--color-cyber-blue), 
+      0 0 15px var(--color-cyber-blue);
+  }
+  100% { 
+    box-shadow: 
+      0 0 10px var(--color-cyber-blue),
+      0 0 20px var(--color-cyber-blue), 
+      0 0 30px var(--color-cyber-blue);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: -500% 0; }
+  100% { background-position: 500% 0; }
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-cyber-blue),
+    var(--color-cyber-purple),
+    var(--color-cyber-pink),
+    var(--color-cyber-purple),
+    var(--color-cyber-blue)
+  );
+  background-size: 500% 100%;
+  animation: var(--animate-text-shimmer);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer animation for video placeholder */
+@keyframes shimmer {
+  0% { background-position: -400% 0; }
+  100% { background-position: 400% 0; }
+}
