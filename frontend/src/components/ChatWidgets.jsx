@@ -9,6 +9,8 @@ const ChatWidgets = () => {
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef(null)
 
+  const apiUrl = import.meta.env.VITE_API_URL //  use VITE_API_URL
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
@@ -27,14 +29,14 @@ const ChatWidgets = () => {
     setIsLoading(true)
 
     try {
-      console.log(' Sending message to backend...')
+      console.log('Sending message to backend...')
       
       const formattedHistory = chatHistory.map(msg => ({
         role: msg.role === 'assistant' ? 'model' : 'user',
         parts: [{ text: msg.content }]
       }))
 
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch(`${apiUrl}`, { // ← using env variable
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,12 +51,12 @@ const ChatWidgets = () => {
 
       if (!response.ok) {
         const errorText = await response.text()
-        console.error('❌ Response error:', errorText)
+        console.error(' Response error:', errorText)
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
       const data = await response.json()
-      console.log('✅ AI Response data:', data)
+      console.log('AI Response data:', data)
       
       const botMessage = { 
         role: 'assistant',
@@ -64,7 +66,7 @@ const ChatWidgets = () => {
       
       setChatHistory(prev => [...prev, botMessage])
     } catch (error) {
-      console.error('💥 Chat error details:', error)
+      console.error(' Chat error details:', error)
       const errorMessage = { 
         role: 'assistant', 
         content: `Sorry, I'm having trouble connecting right now. Please try again later.`, 
@@ -83,23 +85,6 @@ const ChatWidgets = () => {
     }
   }
 
-  // Test backend connection on component mount
-  useEffect(() => {
-    const testBackend = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/health')
-        if (response.ok) {
-          console.log('✅ Backend connection successful')
-        } else {
-          console.log('❌ Backend connection failed')
-        }
-      } catch (error) {
-        console.log('❌ Backend is not reachable')
-      }
-    }
-    testBackend()
-  }, [])
-
   return (
     <>
       {/* Chat Toggle Button */}
@@ -116,7 +101,6 @@ const ChatWidgets = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -125,7 +109,6 @@ const ChatWidgets = () => {
               onClick={() => setIsOpen(false)}
             />
             
-            {/* Chat Container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
