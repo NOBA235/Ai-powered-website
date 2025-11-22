@@ -5,13 +5,16 @@ const mongoose = require("mongoose");
 
 
 const app = express();
-
 app.use(cors({
-  origin: ['https://ai-powered-website.vercel.app'],//This is the url of the frontend and cors here is allowing to talk to my frontend
+  origin: [
+    'http://localhost:5173',                   // local dev frontend
+    'https://ai-powered-website.vercel.app'    // production frontend
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 // Parse incoming JSON requests
 app.use(express.json());

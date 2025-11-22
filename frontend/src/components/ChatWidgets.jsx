@@ -220,4 +220,4 @@ const ChatWidgets = () => {
   )
 }
 
-export default ChatWidgets
+export default ChatWidgets;
