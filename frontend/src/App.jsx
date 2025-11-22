@@ -22,11 +22,10 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const [projectsRes, certsRes] = await Promise.all([
-        fetch('http://localhost:5000/api/projects'),
-        fetch('http://localhost:5000/api/certifications')
-      ])
-      
+       const [projectsRes, certsRes] = await Promise.all([
+      fetch('https://ai-powered-website-1.onrender.com/api/projects'),
+      fetch('https://ai-powered-website-1.onrender.com/api/certifications')
+    ]);
       const projectsData = await projectsRes.json()
       const certsData = await certsRes.json()
       

@@ -47,7 +47,7 @@ const ChatWidgets = () => {
         }),
       })
 
-      console.log('📡 Response status:', response.status)
+      console.log('Response status:', response.status)
 
       if (!response.ok) {
         const errorText = await response.text()
@@ -122,7 +122,7 @@ const ChatWidgets = () => {
                     <Bot className="w-4 h-4 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white">Alex AI</h3>
+                    <h3 className="font-bold text-white">Noba AI</h3>
                     <p className="text-white/80 text-xs">Online • Ready to help</p>
                   </div>
                 </div>
@@ -139,7 +139,7 @@ const ChatWidgets = () => {
                 {chatHistory.length === 0 && (
                   <div className="text-center text-gray-500 mt-8">
                     <Bot className="w-12 h-12 mx-auto mb-3 text-blue-400 opacity-60" />
-                    <p className="text-sm">Hello! I'm Alex's AI assistant.</p>
+                    <p className="text-sm">Hello! I'm Noba's AI assistant.</p>
                     <p className="text-sm">How can I help you today?</p>
                   </div>
                 )}
