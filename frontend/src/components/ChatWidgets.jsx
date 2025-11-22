@@ -9,7 +9,7 @@ const ChatWidgets = () => {
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef(null)
 
-  const apiUrl = import.meta.env.VITE_API_URL //  use VITE_API_URL
+  const apiUrl = import.meta.env.VITE_API_URL
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -36,7 +36,7 @@ const ChatWidgets = () => {
         parts: [{ text: msg.content }]
       }))
 
-      const response = await fetch(`${apiUrl}`, { // ← using env variable
+      const response = await fetch(`${apiUrl}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,9 +87,9 @@ const ChatWidgets = () => {
 
   return (
     <>
-      {/* Chat Toggle Button */}
+      {/* Chat Toggle Button - Centered on mobile */}
       <motion.button
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/30 z-50 border border-white/20"
+        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 md:left-auto md:right-6 md:translate-x-0 w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/30 z-50 border border-white/20"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
@@ -105,7 +105,7 @@ const ChatWidgets = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:bg-transparent md:backdrop-blur-0"
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
               onClick={() => setIsOpen(false)}
             />
             
@@ -113,7 +113,7 @@ const ChatWidgets = () => {
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              className="fixed bottom-24 right-6 w-[calc(100vw-3rem)] md:w-96 h-[500px] bg-white rounded-xl border border-gray-200 shadow-xl z-50 overflow-hidden"
+              className="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 md:w-96 md:h-[500px] bg-white rounded-none md:rounded-xl border-0 md:border border-gray-200 shadow-xl z-50 overflow-hidden flex flex-col"
             >
               {/* Header */}
               <div className="bg-gradient-to-r from-blue-600 to-blue-400 p-4 flex items-center justify-between">
@@ -135,7 +135,7 @@ const ChatWidgets = () => {
               </div>
 
               {/* Messages */}
-              <div className="h-[380px] overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
                 {chatHistory.length === 0 && (
                   <div className="text-center text-gray-500 mt-8">
                     <Bot className="w-12 h-12 mx-auto mb-3 text-blue-400 opacity-60" />
@@ -163,7 +163,7 @@ const ChatWidgets = () => {
                           <Bot className="w-3 h-3 text-blue-500" />
                         )}
                         <span className="text-xs opacity-70">
-                          {msg.role === 'user' ? 'You' : 'Alex AI'}
+                          {msg.role === 'user' ? 'You' : 'Noba AI'}
                         </span>
                       </div>
                       <p className="text-sm leading-relaxed">{msg.content}</p>
