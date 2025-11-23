@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Message is required" });
     }
 
-
+//here are my documentation for the codes below 
      // -------------------------------------------------------
     // Configure the Gemini model
     // model:        AI model version used

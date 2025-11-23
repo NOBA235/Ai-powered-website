@@ -105,42 +105,43 @@ const ChatWidgets = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:bg-black/20"
               onClick={() => setIsOpen(false)}
             />
             
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 20 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 md:w-96 md:h-[500px] bg-white rounded-none md:rounded-xl border-0 md:border border-gray-200 shadow-xl z-50 overflow-hidden flex flex-col"
             >
-              {/* Header */}
+
+              {/* Header for mobile */}
               <div className="bg-gradient-to-r from-blue-600 to-blue-400 p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
                     <Bot className="w-4 h-4 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white">Noba AI</h3>
+                    <h3 className="font-bold text-white text-sm md:text-base">Noba AI</h3>
                     <p className="text-white/80 text-xs">Online • Ready to help</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-1 hover:bg-white/20 rounded transition-colors"
+                  className="p-2 hover:bg-white/20 rounded-full transition-colors"
                 >
-                  <X className="w-4 h-4 text-white" />
+                  <X className="w-5 h-5 text-white" />
                 </button>
               </div>
 
-              {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+              {/* Messages - Improved spacing for mobile */}
+              <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4 bg-slate-50/50">
                 {chatHistory.length === 0 && (
-                  <div className="text-center text-gray-500 mt-8">
-                    <Bot className="w-12 h-12 mx-auto mb-3 text-blue-400 opacity-60" />
+                  <div className="text-center text-gray-500 mt-4 md:mt-8 px-2">
+                    <Bot className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 md:mb-3 text-blue-400 opacity-60" />
                     <p className="text-sm">Hello! I'm Noba's AI assistant.</p>
-                    <p className="text-sm">How can I help you today?</p>
+                    <p className="text-sm">How can I help you today? note: dear Hr this project is currently deployed to Render with basic plans so it might takes longer time for response.Your patience will be appreciated</p>
                   </div>
                 )}
                 
@@ -152,7 +153,7 @@ const ChatWidgets = () => {
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[85%] p-3 rounded-xl ${
+                      className={`max-w-[90%] md:max-w-[85%] p-3 rounded-xl ${
                         msg.role === 'user'
                           ? 'bg-blue-600 text-white rounded-br-none'
                           : 'bg-white border border-gray-200 rounded-bl-none text-gray-800 shadow-sm'
@@ -166,14 +167,14 @@ const ChatWidgets = () => {
                           {msg.role === 'user' ? 'You' : 'Noba AI'}
                         </span>
                       </div>
-                      <p className="text-sm leading-relaxed">{msg.content}</p>
+                      <p className="text-sm leading-relaxed break-words">{msg.content}</p>
                     </div>
                   </motion.div>
                 ))}
                 
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-white border border-gray-200 rounded-xl rounded-bl-none p-3 max-w-[85%] text-gray-800 shadow-sm">
+                    <div className="bg-white border border-gray-200 rounded-xl rounded-bl-none p-3 max-w-[90%] md:max-w-[85%] text-gray-800 shadow-sm">
                       <div className="flex items-center gap-2 text-xs text-gray-500 mb-1">
                         <Bot className="w-3 h-3 text-blue-500" />
                         Noba is typing...
@@ -189,8 +190,8 @@ const ChatWidgets = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Input */}
-              <div className="p-4 border-t border-gray-200 bg-white">
+              {/*Improvement for mobile */}
+              <div className="p-3 md:p-4 border-t border-gray-200 bg-white">
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -198,13 +199,13 @@ const ChatWidgets = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyDown={handleKeyPress}
                     placeholder="Type your message..."
-                    className="flex-1 bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder-gray-500"
+                    className="flex-1 bg-slate-50 border border-gray-300 rounded-lg px-3 py-3 md:py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder-gray-500"
                     disabled={isLoading}
                   />
                   <motion.button
                     onClick={sendMessage}
                     disabled={isLoading || !message.trim()}
-                    className="bg-gradient-to-r from-blue-600 to-blue-500 text-white p-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed border border-blue-600"
+                    className="bg-gradient-to-r from-blue-600 to-blue-500 text-white p-3 md:p-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed border border-blue-600 min-w-[44px] md:min-w-0"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -220,4 +221,4 @@ const ChatWidgets = () => {
   )
 }
 
-export default ChatWidgets;
+export default ChatWidgets
