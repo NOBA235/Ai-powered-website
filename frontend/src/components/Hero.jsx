@@ -126,7 +126,7 @@ const Hero = () => {
               whileTap={{ scale: 0.98 }}
             >
               <Code2 className="w-5 h-5" />
-              View Portfolio
+              See My Work
             </motion.button>
             
             <motion.button 
@@ -135,7 +135,7 @@ const Hero = () => {
               whileTap={{ scale: 0.98 }}
             >
               <Sparkles className="w-5 h-5" />
-              Start a Project
+              Lets Connect
             </motion.button>
           </motion.div>
 

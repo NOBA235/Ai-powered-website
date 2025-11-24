@@ -68,8 +68,16 @@ const About = () => {
               I'm Noba, a dedicated full-stack developer with a passion for creating 
               innovative digital solutions. My journey in tech is driven by curiosity and 
               the desire to build applications that make a difference.
+              I started my coding journey during my 10th standard and it came from my curiosity to build something that could 
+              solve problems and it has become my biggest passion.
+              
+              I'm continuosly learning and exploring new technologies every day.
+              When i'm not coding I can be seen watching tutorials or reading articles related to my craft.
+              For me coding is as much fun as watching movies or sports.
+
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
+              <h1>My Skills</h1>
               Specializing in modern web technologies, I bring ideas to life with clean code, 
               intuitive design, and cutting-edge features. From AI-powered applications to 
               responsive web platforms, I thrive on technical challenges.
